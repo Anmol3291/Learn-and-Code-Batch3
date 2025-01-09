@@ -1,51 +1,30 @@
 import json
 
 
-def load_adjacent_country_data(file_path):
-    try:
-        with open(file_path, "r") as file:
-            return json.load(file)
-    except FileNotFoundError:
-        print(f"Error: The file '{file_path}' does not exist.")
-        return {}
-    except json.JSONDecodeError:
-        print(f"Error: Failed to parse JSON in the file '{file_path}'.")
-        return {}
-
-
-def get_adjacent_countries(country_code, country_data):
-    country_code = country_code.upper()
-    country_info = country_data.get(country_code)
-
-    if not country_info:
-        return f"Error: Country code '{country_code}' is not recognized."
-
-    country_name = country_info["name"]
-    adjacent_countries = country_info["adjacent"]
-
-    if not adjacent_countries:
-        return f"{country_name} has no adjacent countries."
-
-    adjacent_list = ""
-    for country in adjacent_countries:
-        adjacent_list += country + ", "
-    return f"{country_name} is adjacent to: {adjacent_list}."
+def load_adjacency_countries_list():
+    with open("adjacent_countries_data.json") as f:
+        adjacency_countries = json.load(f)
+    return adjacency_countries
 
 
 def main():
-    country_data = load_adjacent_country_data("adjacent_country_data.json")
-    if not country_data:
-        return
+    user_entered_country_code = input("Enter the country code: ")
+    adjacent_countries_data = load_adjacency_countries_list()
+    if user_entered_country_code in adjacent_countries_data:
+        entered_country_name = adjacent_countries_data[user_entered_country_code][
+            "name"
+        ]
+        adjacent_countries_list = adjacent_countries_data[user_entered_country_code][
+            "adjacent"
+        ]
 
-    while True:
-        country_code = input("Enter a country code (or 'exit' to quit): ").strip()
+        print(f"\nThe adjacent countries of {entered_country_name} are:\n\t")
+        for country in adjacent_countries_list:
+            print(country)
+    else:
+        print(
+            "The country code is not found in the database or you have entered an invalid country code.please try again."
+        )
 
-        if country_code.lower() == "exit":
-            break
 
-        result = get_adjacent_countries(country_code, country_data)
-        print(result)
-
-
-if __name__ == "__main__":
-    main()
+main()

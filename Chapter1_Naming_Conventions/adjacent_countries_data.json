@@ -1,0 +1,39 @@
+{
+    "IN": {
+        "name": "India",
+        "adjacent": [
+            "Pakistan",
+            "China",
+            "Nepal",
+            "Bangladesh",
+            "Bhutan",
+            "Myanmar",
+            "Afghanistan"
+        ]
+    },
+    "US": {
+        "name": "United States",
+        "adjacent": [
+            "Canada",
+            "Mexico"
+        ]
+    },
+    "NZ": {
+        "name": "New Zealand",
+        "adjacent": []
+    },
+    "CN": {
+        "name": "China",
+        "adjacent": [
+            "India",
+            "Russia",
+            "Mongolia",
+            "Nepal",
+            "Pakistan",
+            "Afghanistan",
+            "Vietnam",
+            "Laos",
+            "Myanmar"
+        ]
+    }
+}
