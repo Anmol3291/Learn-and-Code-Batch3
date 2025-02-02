@@ -1,0 +1,117 @@
+#Assignment 3
+
+public class CustomerSearch
+{
+    // Search customer by Country
+    public List<Customer> SearchByCountry(string country)
+    {
+        var query =
+            from c in db.customers
+            where c.Country.Contains(country)
+            orderby c.CustomerID ascending
+            select c;
+
+        return query.ToList();
+    }
+
+    // Search customer by Company Name
+    public List<Customer> SearchByCompanyName(string company)
+    {
+        var query =
+            from c in db.customers
+            where c.CompanyName.Contains(company)
+            orderby c.CustomerID ascending
+            select c;
+
+        return query.ToList();
+    }
+
+    // Search customer by Contact Person
+    public List<Customer> SearchByContact(string contact)
+    {
+        var query =
+            from c in db.customers
+            where c.ContactName.Contains(contact)
+            orderby c.CustomerID ascending
+            select c;
+
+        return query.ToList();
+    }
+
+    // Export customer data to CSV format
+    public string ExportToCSV(List<Customer> data)
+    {
+        StringBuilder sb = new StringBuilder();
+
+        foreach (var item in data)
+        {
+            sb.AppendFormat("{0},{1},{2},{3}", item.CustomerID, item.CompanyName, item.ContactName, item.Country);
+            sb.AppendLine();
+        }
+
+        return sb.ToString();
+    }
+}
+
+
+
+#Solution
+
+Above is Violitiing the SRP and in CustomerSearch class we are searching customer multiple ways and that is fine but ExportToCSV function is not at all related to customer search so now class has more than one reason to chnage.
+
+modified code :
+
+
+public class CustomerSearch
+{
+    // Search customer by Country
+    public List<Customer> SearchByCountry(string country)
+    {
+        var query =
+            from c in db.customers
+            where c.Country.Contains(country)
+            orderby c.CustomerID ascending
+            select c;
+
+        return query.ToList();
+    }
+
+    // Search customer by Company Name
+    public List<Customer> SearchByCompanyName(string company)
+    {
+        var query =
+            from c in db.customers
+            where c.CompanyName.Contains(company)
+            orderby c.CustomerID ascending
+            select c;
+
+        return query.ToList();
+    }
+
+    // Search customer by Contact Person
+    public List<Customer> SearchByContact(string contact)
+    {
+        var query =
+            from c in db.customers
+            where c.ContactName.Contains(contact)
+            orderby c.CustomerID ascending
+            select c;
+
+        return query.ToList();
+    }
+}
+
+public class ExportServices{
+    public string ExportToCSV(List<Customer> data)
+    {
+        StringBuilder sb = new StringBuilder();
+
+        foreach (var item in data)
+        {
+            sb.AppendFormat("{0},{1},{2},{3}", item.CustomerID, item.CompanyName, item.ContactName, item.Country);
+            sb.AppendLine();
+        }
+
+        return sb.ToString();
+    }
+}

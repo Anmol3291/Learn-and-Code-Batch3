@@ -1,0 +1,112 @@
+// Does this Book class follow SRP?  
+
+class Book {
+ 
+    function getTitle() {
+        return "A Great Book";
+    }
+ 
+    function getAuthor() {
+        return "John Doe";
+    }
+ 
+    function turnPage() {
+        // pointer to next page
+    }
+ 
+    function getCurrentPage() {
+        return "current page content";
+    }
+ 
+    function getLocation() {
+        // returns the position in the library
+        // ie. shelf number & room number
+    }
+
+    function save() {
+        $filename = '/documents/'. $this->getTitle(). ' - ' . $this->getAuthor();
+        file_put_contents($filename, serialize($this));
+    }
+}
+
+interface Printer {
+ 
+    function printPage($page);
+}
+ 
+class PlainTextPrinter implements Printer {
+ 
+    function printPage($page) {
+        echo $page;
+    }
+ 
+}
+ 
+class HtmlPrinter implements Printer {
+ 
+    function printPage($page) {
+        echo '<div style="single-page">' . $page . '</div>';
+    }
+}
+
+
+# Soltuion
+
+Above Book function does not follow the SRP as SRP states that a class or module should have only one responsibility to follow and there should be only single reason to change the function.
+
+In Book Classs the first four functions are related to Book Module only but last two module like finding out getLocation
+
+
+class Book {
+ 
+    function getTitle() {
+        return "A Great Book";
+    }
+ 
+    function getAuthor() {
+        return "John Doe";
+    }
+ 
+    function turnPage() {
+        // pointer to next page
+    }
+ 
+    function getCurrentPage() {
+        return "current page content";
+    }
+ 
+}
+
+
+class GetBookLocation{
+    function getLocation() {
+        // returns the position in the library
+        // ie. shelf number & room number
+    }
+}
+
+class SaveBookLocation{
+    function save() {
+        $filename = '/documents/'. $this->getTitle(). ' - ' . $this->getAuthor();
+        file_put_contents($filename, serialize($this));
+    }
+}
+
+interface Printer {
+    function printPage($page);
+}
+ 
+class PlainTextPrinter implements Printer {
+ 
+    function printPage($page) {
+        echo $page;
+    }
+ 
+}
+ 
+class HtmlPrinter implements Printer {
+ 
+    function printPage($page) {
+        echo '<div style="single-page">' . $page . '</div>';
+    }
+}

@@ -1,0 +1,67 @@
+#Assignement 2
+
+using System;
+
+class MyClass {
+    static void Main(string[] args) {
+        // Reading the first line with N (array size) and Q (number of queries)
+        var NQ = Array.ConvertAll(Console.ReadLine().Split(' '), int.Parse);
+        
+        // Reading the array elements
+        var arr = Array.ConvertAll(Console.ReadLine().Split(' '), long.Parse);
+        
+        // Creating an array to store the prefix sums
+        long[] sumarr = new long[NQ[0] + 1];
+        sumarr[0] = 0;
+        
+        // Calculating the prefix sum
+        for (int i = 1; i <= NQ[0]; i++) {
+            sumarr[i] = sumarr[i - 1] + arr[i - 1];
+        }
+        
+        // Processing each query
+        for (var x = 0; x < NQ[1]; x++) {
+            // Reading the L and R values for each query
+            var RL = Array.ConvertAll(Console.ReadLine().Split(' '), int.Parse);
+            
+            // Calculating and printing the floor of the expected value (mean) of the subarray
+            long result = (long)((long)(sumarr[RL[1]] - sumarr[RL[0] - 1]) / (RL[1] - RL[0] + 1));
+            Console.WriteLine(result);
+        }
+    }
+}
+
+
+#Solution
+
+using System;
+
+class MyClass {
+    static void Main(string[] args) {
+        // Reading the first line with N (array size) and Q (number of queries)
+        var queriesAndArrays = Array.ConvertAll(Console.ReadLine().Split(' '), int.Parse);
+        
+        // Reading the array elements
+        var numbers = Array.ConvertAll(Console.ReadLine().Split(' '), long.Parse);
+        
+        // Creating an array to store the prefix sums
+        long[] prefixSum = new long[queriesAndArrays[0] + 1];
+        prefixSum[0] = 0;
+        
+        // Calculating the prefix sum
+        for (int i = 1; i <= queriesAndArrays[0]; i++) {
+            prefixSum[i] = prefixSum[i - 1] + numbers[i - 1];
+        }
+        
+        // Processing each query
+        for (var x = 0; x < queriesAndArrays[1]; x++) {
+            // Reading the L and R values for each query
+            var queryRange = Array.ConvertAll(Console.ReadLine().Split(' '), int.Parse);
+            
+            // Calculating and printing the floor of the expected value (mean) of the subarray
+            long sumOfSubarray = prefixSums[queryRange[1]] - prefixSums[queryRange[0] - 1];
+            long numberOfElements = queryRange[1] - queryRange[0] + 1;
+            long mean = sumOfSubarray / numberOfElements; 
+        }
+    }
+}

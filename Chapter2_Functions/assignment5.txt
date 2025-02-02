@@ -1,0 +1,19 @@
+Assignment 5:
+
+
+Class Employee
+{
+    int id;
+    string name;
+    string department;
+    bool working;
+
+public:
+saveEmployeeTODatabase()
+printEmployeeDetailReportXML()
+printEmployeeDetailReportCSV()
+terminateEmployee()
+bool isWorking()
+}; 
+
+above class is clearly violating the SRP and OCP as I can see the Employee Class is responsibe for managing the Employee, saving data, terminating employee and generating multiple format report so it is violating the SRP. also it is not following OCP as it is not easily availble for extension i have to modify the entire Employee class for making chnages in export services.
