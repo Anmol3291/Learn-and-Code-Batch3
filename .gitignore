@@ -1,6 +1,12 @@
-# Byte-compiled / optimized / DLL files
+# Ignore all __pycache__ directories
 __pycache__/
+
+# Ignore compiled Python files
+*.pyc
+*.pyo
+*.pyd
 *.py[cod]
 *$py.class
 
+# Ignore virtual environments
 **/venv/
