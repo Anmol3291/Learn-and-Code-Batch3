@@ -1,0 +1,7 @@
+Problem Statement: Vehicle Service Center Management System - You are building a Vehicle Service Center Management System that handles service requests for different types of vehicles: Car, Bike, and Truck. Each vehicle has its own specific service requirements and implementations. For example: * A Car may need oil change, brake inspection, and tire rotation. * A Bike may need chain lubrication and brake tightening. * A Truck may need heavy-duty engine diagnostics and cargo inspection. The system must be able to create the correct type of vehicle service object at runtime, based on the input provided by the customer or system (e.g., "car", "bike", or "truck"). 
+
+
+Requirements: 
+a. Design a system where vehicle-specific service objects can be created dynamically based on vehicle type. 
+b. The client code should not need to know the concrete classes or use new directly. 
+c. Use the Factory Design Pattern to achieve this.
