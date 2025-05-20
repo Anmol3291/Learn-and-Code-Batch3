@@ -1,0 +1,10 @@
+3. Problem Statement: Logging Service for an Application - You are building a large-scale application where multiple modules and components need to log information such as errors, debug messages, and audit trails. To avoid multiple instances of the logger and ensure consistent, centralized logging, the application must use a single shared instance of the Logging Service. 
+
+Requirements: 
+a. Ensure only one instance of the Logger class exists throughout the application lifecycle. 
+
+b. Provide a global access point to retrieve the Logger instance. 
+
+c. Ensure the solution is thread-safe (in multi-threaded environments) if applicable.
+
+d. Implement the Singleton Design Pattern to guarantee a single, globally accessible instance of the logging service, avoiding redundant resource usage and ensuring consistent log handling.
