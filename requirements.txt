@@ -1,0 +1,13 @@
+fastapi
+uvicorn
+requests
+pydantic
+python-jose[cryptography]
+python-multipart
+apscheduler
+langchain
+langchain-openai
+chromadb
+openai
+python-dotenv
+email-validator
